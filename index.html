@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+   body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #141313;
+}
+.calculator{
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f1f1;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+.screen{
+    height: 60px;
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px ;
+    font-size: 24px;
+}
+.buttons{
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
+
+}
+.button{
+padding: 15px 0;
+text-align: center;
+cursor: pointer;
+background-color: #e0e0e0;
+border: none;
+border-radius: 5px;
+font-size: 20px;
+transition: background-color 0.3s ease;
+}
+.button:hover{
+background-color: #ccc;
+}
+.button.clear{
+    grid-column:span 1 ;
+}
+.button.equal{
+grid-column: span 2 ;
+background-color: #2196f3;
+color: #fff;
+}
+.button.operator{
+background-color: hsl(27, 84%, 53%);
+color: #fff;
+}
+.button.clear-entry{
+grid-column: span 2;
+}
+input{
+    width: 275px;
+}
+</style>
+<body>
+    <div class="calculator">
+        <input type="text" class="screen" id="result">
+        <div class="buttons">
+            <button class="button" onclick="show ('1')">1</button>
+            <button class="button" onclick="show ('2')">2</button>
+            <button class="button" onclick="show ('3')">3</button>
+            <button class="button operator" onclick="show ('+')">+</button>
+
+            <button class="button" onclick="show ('4')">4</button>
+            <button class="button" onclick="show ('5')">5</button>
+            <button class="button" onclick="show ('6')">6</button>
+            <button class="button operator" onclick="show ('-')">-</button>
+
+            <button class="button" onclick="show ('7')">7</button>
+            <button class="button" onclick="show ('8')">8</button>
+            <button class="button" onclick="show ('9')">9</button>
+            <button class="button operator" onclick="show ('*')">*</button>
+
+            <button class="button" onclick="show ('0')">0</button>
+            <button class="button" onclick="show ('.')">.</button>
+            <button class="button" onclick="clearAll ()">c</button>
+            <button class="button operator" onclick="show ('/')">/</button>
+
+
+            <button class="button operator equal" onclick="calculate ()">=</button>
+            <button class="button clear clear-entry" onclick="clearLastEnter ()">&#9003;</button>
+        </div>
+    </div>
+    <script>
+        function show (value){
+            document.getElementById('result').value +=value
+        }
+        function calculate (){
+            document.getElementById('result').value=eval(document.getElementById('result').value)
+        }
+       function clearAll(){
+        document.getElementById('result').value=''
+       }
+       function clearLastEnter (){
+        const digit =document.getElementById('result').value
+        document.getElementById('result').value=digit.slice(0,-1)
+       }
+    </script>
+</body>
+</html>
